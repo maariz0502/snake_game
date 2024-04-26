@@ -3,6 +3,8 @@ package model;
 import java.util.Random;
 
 import controller.App;
+import model.strategyPattern.EasyModeStrategy;
+import model.strategyPattern.StrategyPattern;
 import view.AppCanvas;
 import view.AppWindow;
 
@@ -11,6 +13,7 @@ public class GameModel {
     public Food food;
     public String messages;
     public int score;
+    private StrategyPattern  strategy;
     
     public GameModel(){
         snake = new Snake();
@@ -22,6 +25,7 @@ public class GameModel {
         score = 0;
         messages = "Click <Start> to play";
         food = createFood();
+        strategy = new EasyModeStrategy(this);
     }
 
     public Food createFood(){
@@ -61,5 +65,12 @@ public class GameModel {
             if(head.x == n.x && head.y == n.y) return true;
         }
         return false;
+    }
+
+    public StrategyPattern getStrategy() {
+        return strategy;
+    }
+    public void setStrategy(StrategyPattern strategy) {
+        this.strategy = strategy;
     }
 }

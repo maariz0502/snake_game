@@ -8,6 +8,8 @@ public class GameStateOver implements GameState{
     public GameStateOver(){
         App.win.restartButton.setEnabled(true);
         App.win.startPauseButton.setEnabled(false);
+        App.win.easyModeButton.setEnabled(false);
+        App.win.hardModeButton.setEnabled(false);
     }
 
     @Override

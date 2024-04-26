@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+import controller.App;
 import model.observerPattern.SnakeEvent;
 import model.observerPattern.SnakeObserver;
 import model.observerPattern.Subject;
@@ -51,7 +52,6 @@ public class Snake implements Subject{
             case DOWN:
                 head.y += AppWindow.GRID_SIZE;
                 break;
-
         }
     }
 

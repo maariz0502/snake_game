@@ -11,12 +11,13 @@ public class TimerListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         GameState state = App.win.getGameState();
         state.animate();
         if(state instanceof GameStatePlaying){
             detectCollision();
         }
-        App.win.getCanvas().repaint();
+        App.win.getCanvas().repaint();    
     }
     
     private void detectCollision(){

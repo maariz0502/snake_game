@@ -22,5 +22,11 @@ public class SnakeEventListener implements SnakeObserver{
         App.model.messages = "Hit self body - Press <Restart>";
         App.win.goNextState();
     }
+
+    @Override
+    public void hitSnake() {
+        App.model.messages = "Hit snake - Press <Restart>:";
+        App.win.goNextState();
+    }
     
 }
