@@ -9,6 +9,7 @@ public class SnakeEventListener implements SnakeObserver{
     public void hitFood() {
         App.model.score += 10;
         App.model.snake.nodes.add(new SnakeNode(-100, -100));
+        App.model.getStrategy().play();
     }
 
     @Override
@@ -28,5 +29,11 @@ public class SnakeEventListener implements SnakeObserver{
         App.model.messages = "Hit snake - Press <Restart>:";
         App.win.goNextState();
     }
-    
+
+    @Override
+    public void hitObstacle() {
+        App.model.messages = "Hit obstacle - Press <Restart>:";
+        App.win.goNextState();
+    }
+
 }

@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import controller.App;
 import model.Food;
+import model.Obstacle;
 import model.Snake;
 import model.SnakeNode;
 
@@ -32,6 +33,9 @@ public class AppCanvas extends JPanel{
 
         drawScore(g2, App.model.score);
         drawSnake(g2, App.model.snake);
+        for(int i = 0 ; i < App.model.obstacle.size() ; i++){
+            drawObstacle(g2, App.model.obstacle.get(i));
+        }
         if(App.model.food != null)
             drawFood(g2, App.model.food);
         if(App.model.messages != null)
@@ -68,6 +72,12 @@ public class AppCanvas extends JPanel{
     private void drawFood(Graphics2D g2, Food food){
         var e = new Ellipse2D.Float(food.x, food.y, AppWindow.GRID_SIZE, AppWindow.GRID_SIZE);
         g2.setColor(Color.pink);
+        g2.fill(e);
+    }
+
+    private void drawObstacle(Graphics2D g2, Obstacle obstacle){
+        var e = new Ellipse2D.Float(obstacle.x, obstacle.y, AppWindow.GRID_SIZE, AppWindow.GRID_SIZE);
+        g2.setColor(Color.red);
         g2.fill(e);
     }
 

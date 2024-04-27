@@ -94,6 +94,10 @@ public class Snake implements Subject{
                 for(var o: observers)
                     o.hitWall();
                     break;
+            case HIT_OBSTACLE:
+                for(var o: observers)
+                    o.hitObstacle();
+                    break;
 
         }
     }

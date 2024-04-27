@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import controller.App;
@@ -11,12 +12,15 @@ import view.AppWindow;
 public class GameModel {
     public Snake snake;
     public Food food;
+    public ArrayList<Obstacle> obstacle = new ArrayList<>();
     public String messages;
     public int score;
     private StrategyPattern  strategy;
     
     public GameModel(){
         snake = new Snake();
+        strategy = new EasyModeStrategy(this);
+        obstacle.add(new Obstacle(9999, 9999));
         init();
     }
 
@@ -25,7 +29,6 @@ public class GameModel {
         score = 0;
         messages = "Click <Start> to play";
         food = createFood();
-        strategy = new EasyModeStrategy(this);
     }
 
     public Food createFood(){
@@ -38,11 +41,28 @@ public class GameModel {
         return new Food(x, y);
     }
 
-    private boolean isInsideSnake(int x, int y){
+    public boolean isInsideSnake(int x, int y){
         for(var node: snake.nodes){
             if(node.x == x && node.y == y)return true;
         }
         return false;
+    }
+
+    public boolean isInsideFood(int x, int y){
+        if(food.x == x && food.y == y)
+            return true;
+        else
+            return false;
+    }
+
+    public Obstacle createObstacle(){
+        Random random = new Random();
+        int x, y;
+        do{
+        x = random.nextInt(AppCanvas.WIDTH / AppWindow.GRID_SIZE) * AppWindow.GRID_SIZE;
+        y = random.nextInt(AppCanvas.HEIGHT / AppWindow.GRID_SIZE) * AppWindow.GRID_SIZE;
+        }while(isInsideSnake(x, y) || isInsideFood(x,y));
+        return new Obstacle(x, y);
     }
 
     public boolean snakeGotFood(){
@@ -66,6 +86,18 @@ public class GameModel {
         }
         return false;
     }
+
+    public boolean snakeHitsObstacle(){
+        var obstacle = App.model.obstacle;
+        var head = App.model.snake.nodes.get(0);
+        for(int i = 0 ; i < obstacle.size() ; i++){ 
+            if(obstacle.get(i).x == head.x && obstacle.get(i).y == head.y){
+                return true;
+            }
+        }
+        return false;
+    }
+    
 
     public StrategyPattern getStrategy() {
         return strategy;

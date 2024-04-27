@@ -10,9 +10,7 @@ public class App {
     public static AppWindow win = new AppWindow();
     public static GameModel model = new GameModel();
     public static Timer timer;
-
-    public static final int FPS = 4;
-    public static final int DELAY = 1000 / FPS;
+    
     public static void main(String[] args) {
         win.init();
         win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,7 +21,5 @@ public class App {
 
         SnakeEventListener listener = new SnakeEventListener();
         App.model.snake.addObserver(listener);
-
-        timer = new Timer(DELAY, new TimerListener());
     }
 }

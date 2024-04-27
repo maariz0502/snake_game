@@ -5,4 +5,5 @@ public interface SnakeObserver {
     void hitWall();
     void hitSelf();
     void hitSnake();
+    void hitObstacle();
 }
