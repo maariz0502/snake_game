@@ -15,7 +15,7 @@ public class GameModel {
     public ArrayList<Obstacle> obstacle = new ArrayList<>();
     public String messages;
     public int score;
-    private StrategyPattern  strategy;
+    private StrategyPattern strategy;
     
     public GameModel(){
         snake = new Snake();
