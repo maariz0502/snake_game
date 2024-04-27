@@ -19,9 +19,11 @@ public class StrategySelectionListener implements ActionListener {
         switch (action) {
             case AppWindow.EASY_ACTION:
                 App.model.setStrategy(new EasyModeStrategy(App.model));
+                App.win.getCanvas().repaint();
                 break;
             case AppWindow.HARD_ACTION:
                 App.model.setStrategy(new HardModeStrategy(App.model));
+                App.win.getCanvas().repaint();
                 break;
         }
     }

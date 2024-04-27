@@ -20,7 +20,6 @@ public class GameModel {
     public GameModel(){
         snake = new Snake();
         strategy = new EasyModeStrategy(this);
-        obstacle.add(new Obstacle(9999, 9999));
         init();
     }
 

@@ -20,6 +20,7 @@ public class AppCanvas extends JPanel{
 
     public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
+    public Color snakeColor = Color.blue;
     
     public AppCanvas(){
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -50,7 +51,7 @@ public class AppCanvas extends JPanel{
 
     private void drawSnake(Graphics2D g2, Snake snake){
         boolean filled = true;
-        g2.setColor(Color.blue);
+        g2.setColor(snakeColor);
         drawSnakeHead(g2, snake.nodes.get(0));
         for(int i = 1; i < snake.nodes.size() ; i++){
             drawSnakeBody(g2, snake.nodes.get(i), filled);
